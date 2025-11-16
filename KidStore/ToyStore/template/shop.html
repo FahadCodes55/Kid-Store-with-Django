@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Kid Toy Store - Shop {% endblock %}
+
+    {% block body %}
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Toys</h2>
+            <div class="products-grid">
+                {% for item in items %}
+                <div class="product-card">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="product-img">
+                    {% else %}
+                    <p>No Image Available</p>
+                    {% endif %}
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <div class="price">$ {{ item.price }}</div>
+                    <form action="{% url 'cart' item.id %}" method="POST"> {% csrf_token %}
+                        <button value="submit" class="btn">Add to Cart</button>
+                    </form>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}

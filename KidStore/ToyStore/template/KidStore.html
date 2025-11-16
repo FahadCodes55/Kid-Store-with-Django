@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %} Kid Toy Store - Home {% endblock %}
+
+    {% block body %}
+    <section class="hero">
+        <div class="container">
+            <h1>🌟 Welcome to ToyLand! 🌟</h1>
+            <p>Where Every Child's Dream Comes True!</p>
+            <a href="{% url 'shop' %}" class="btn">Start Shopping</a>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <h2 class="section-title">Top Rated Toys</h2>
+            <div class="products-grid">
+
+                {% for item in items %}
+                <div class="product-card">
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="product-img">
+                    {% else %}
+                    <p>No Image Available</p>
+                    {% endif %}
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }}</p>
+                    <div class="price">$ {{ item.price }}</div>
+                    <a href="{% url 'shop' %}" class="btn">Add to Cart</a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+
+    <section class="products-section" style="background: linear-gradient(135deg, #FFD3B6 0%, #FFAAA5 50%, #A8E6CF 100%); padding: 4rem 2rem; margin: 2rem; border-radius: 20px;">
+        <div class="container">
+            <h2 class="section-title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">Why Choose ToyLand?</h2>
+            <div class="features">
+                <div class="feature-box">
+                    <h3>🎁 Quality Toys</h3>
+                    <p>Only the best, safest toys for your children</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🚚 Fast Delivery</h3>
+                    <p>Get your toys delivered within 2-3 days</p>
+                </div>
+                <div class="feature-box">
+                    <h3>💯 Best Prices</h3>
+                    <p>Affordable prices without compromising quality</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% endblock %}

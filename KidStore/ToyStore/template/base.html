@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <style>{% block css %}{% endblock %}</style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a href="{% url 'home' %}" class="logo">🎈 ToyLand</a>
+      <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'shop' %}">Shop</a></li>
+        <li><a href="{% url 'reels' %}">Reels</a></li>
+
+        <!-- 🛒 Cart with count badge -->
+        <li class="cart-icon">
+          <a href="{% url 'cart_items' %}">
+            🛒
+            {% if cart_count and cart_count > 0 %}
+              <span class="cart-count">{{ cart_count }}</span>
+            {% endif %}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  {% block body %}{% endblock %}
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 ToyLand - Making Childhood Magical! 🎈</p>
+    </div>
+  </footer>
+
+</body>
+</html>
